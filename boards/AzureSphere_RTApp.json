@@ -1,0 +1,18 @@
+{
+  "build": {
+    "cpu": "cortex-m4",
+    "extra_flags": "-DAZURE_SPHERE -DAZURE_SPHERE_RTAPP",
+    "ldscript": "mt3620_m4.ld",
+    "mcu": "mt3620",
+	"f_cpu": 200000000,
+	"azsphere_sysroot": null
+  },
+  "frameworks": [],
+  "name": "Azure Sphere MT3620 Starter Kit - RTApp",
+  "upload": {
+    "maximum_ram_size": 196608,
+    "maximum_size": 196608
+  },
+  "url": "http://cloudconnectkits.org/product/azure-sphere-starter-kit",
+  "vendor": "Avnet"
+}

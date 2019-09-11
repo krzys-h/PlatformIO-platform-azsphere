@@ -1,0 +1,28 @@
+{
+  "name": "azsphere",
+  "title": "Azure Sphere",
+  "description": "Microsoft's Azure Sphere IoT platform",
+  "url": "https://azure.microsoft.com/en-us/services/azure-sphere/",
+  "homepage": "https://github.com/krzys-h/PlatformIO-platform-azsphere",
+  "license": "MIT",
+  "engines": {
+    "platformio": "<5"
+  },
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/krzys-h/PlatformIO-platform-azsphere.git"
+  },
+  "version": "0.1.0",
+  "packageRepositories": [
+    "https://dl.bintray.com/platformio/dl-packages/manifest.json",
+    "http://dl.platformio.org/packages/manifest.json"
+  ],
+  "packages": {
+    "toolchain-gccarmnoneeabi": {
+      "type": "toolchain",
+      "optional": false,
+      "version": "~1.50401.0"
+    }
+  }
+}
