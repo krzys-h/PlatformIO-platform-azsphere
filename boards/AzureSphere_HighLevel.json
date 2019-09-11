@@ -3,8 +3,8 @@
     "cpu": "cortex-a7",
     "extra_flags": "-DAZURE_SPHERE -DAZURE_SPHERE_HIGHLEVEL",
     "mcu": "mt3620",
-	"f_cpu": 500000000,
-	"azsphere_sysroot": null
+    "f_cpu": 500000000,
+    "azsphere_sysroot": null
   },
   "frameworks": [],
   "name": "Azure Sphere MT3620 Starter Kit - High level app",

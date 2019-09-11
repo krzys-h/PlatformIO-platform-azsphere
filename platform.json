@@ -8,8 +8,7 @@
   "engines": {
     "platformio": "<5"
   },
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "https://github.com/krzys-h/PlatformIO-platform-azsphere.git"
   },

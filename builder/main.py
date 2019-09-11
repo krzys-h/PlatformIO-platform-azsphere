@@ -9,8 +9,8 @@ env = DefaultEnvironment()
 # A full list with the available variables
 # http://www.scons.org/doc/production/HTML/scons-user.html#app-variables
 env.Replace(
-	AZSPHERE="azsphere",
-	AZSPHERE_SYSROOT=env.BoardConfig().get("build.azsphere_sysroot"),
+    AZSPHERE="azsphere",
+    AZSPHERE_SYSROOT=env.BoardConfig().get("build.azsphere_sysroot"),
     PROGSUFFIX=".elf",
 )
 
@@ -41,103 +41,103 @@ env.Append(
     CCFLAGS=[
         "-O3",
         "-mcpu=%s" % env.BoardConfig().get("build.cpu"),
-		"-mthumb",
+        "-mthumb",
     ],
     CXXFLAGS=[
     ],
     LINKFLAGS=[
-		"-O3",
+        "-O3",
         "-mcpu=%s" % env.BoardConfig().get("build.cpu"),
-		"-mthumb"
+        "-mthumb"
     ],
-	CPPDEFINES=[]
+    CPPDEFINES=[]
 )
 
 if env.BoardConfig().get("build.cpu") == "cortex-a7":
-	env.Replace(
-		AR="arm-poky-linux-musleabi-ar",
-		AS="arm-poky-linux-musleabi-as",
-		CC="arm-poky-linux-musleabi-gcc",
-		CXX="arm-poky-linux-musleabi-g++",
-		GDB="arm-poky-linux-musleabi-gdb",
-		OBJCOPY="arm-poky-linux-musleabi-objcopy",
-		RANLIB="arm-poky-linux-musleabi-gcc-ranlib",
-		SIZETOOL="arm-poky-linux-musleabi-size",
-	)
-	
-	env.Append(
-		CCFLAGS=[
-			"-march=armv7ve",
-			"-mfpu=neon",
-			"-mfloat-abi=hard",
-			"-B", join(azsphere_sysroot_install_dir, 'tools', 'gcc'),
-			"--sysroot="+azsphere_sysroot_install_dir,
-			"-fPIC",
-			"-ffunction-sections",
-			"-fdata-sections",
-			"-fno-strict-aliasing",
-			"-fno-omit-frame-pointer",
-			"-fno-exceptions",
-			"-fstack-protector-strong",
-		],
-		CXXFLAGS=[ #TODO: check
+    env.Replace(
+        AR="arm-poky-linux-musleabi-ar",
+        AS="arm-poky-linux-musleabi-as",
+        CC="arm-poky-linux-musleabi-gcc",
+        CXX="arm-poky-linux-musleabi-g++",
+        GDB="arm-poky-linux-musleabi-gdb",
+        OBJCOPY="arm-poky-linux-musleabi-objcopy",
+        RANLIB="arm-poky-linux-musleabi-gcc-ranlib",
+        SIZETOOL="arm-poky-linux-musleabi-size",
+    )
+    
+    env.Append(
+        CCFLAGS=[
+            "-march=armv7ve",
+            "-mfpu=neon",
+            "-mfloat-abi=hard",
+            "-B", join(azsphere_sysroot_install_dir, 'tools', 'gcc'),
+            "--sysroot="+azsphere_sysroot_install_dir,
+            "-fPIC",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fno-strict-aliasing",
+            "-fno-omit-frame-pointer",
+            "-fno-exceptions",
+            "-fstack-protector-strong",
+        ],
+        CXXFLAGS=[ #TODO: check
             "-fno-rtti",
             "-fno-exceptions", 
             "-fno-non-call-exceptions",
             "-fno-use-cxa-atexit",
             "-fno-threadsafe-statics",
-		],
-		LINKFLAGS=[
-			"-march=armv7ve",
-			"-mfpu=neon",
-			"-mfloat-abi=hard",
-			"-B", join(azsphere_sysroot_install_dir, 'tools', 'gcc'),
-			"--sysroot="+azsphere_sysroot_install_dir,
-			"-nodefaultlibs",
-			"-pie",
-			"-Wl,--no-undefined",
-			"-Wl,--gc-sections"
-		],
-		LIBS=["applibs", "pthread", "gcc_s", "c"],
-		CPPDEFINES=["_POSIX_C_SOURCE"]
-	)
+        ],
+        LINKFLAGS=[
+            "-march=armv7ve",
+            "-mfpu=neon",
+            "-mfloat-abi=hard",
+            "-B", join(azsphere_sysroot_install_dir, 'tools', 'gcc'),
+            "--sysroot="+azsphere_sysroot_install_dir,
+            "-nodefaultlibs",
+            "-pie",
+            "-Wl,--no-undefined",
+            "-Wl,--gc-sections"
+        ],
+        LIBS=["applibs", "pthread", "gcc_s", "c"],
+        CPPDEFINES=["_POSIX_C_SOURCE"]
+    )
 elif env.BoardConfig().get("build.cpu") == "cortex-m4":
-	env.Replace(
-		AR="arm-none-eabi-ar",
-		AS="arm-none-eabi-as",
-		CC="arm-none-eabi-gcc",
-		CXX="arm-none-eabi-g++",
-		GDB="arm-none-eabi-gdb",
-		OBJCOPY="arm-none-eabi-objcopy",
-		RANLIB="arm-none-eabi-gcc-ranlib",
-		SIZETOOL="arm-none-eabi-size",
-	)
-	
-	env.Append(
-		CCFLAGS=[ # TODO: what do these do?
-			"-MD",
-			"-MT",
-		],
-		LINKFLAGS=[
-			"-nostartfiles",
-			"-Wl,--no-undefined",
-			"-Wl,-n",
-		],
-	)
+    env.Replace(
+        AR="arm-none-eabi-ar",
+        AS="arm-none-eabi-as",
+        CC="arm-none-eabi-gcc",
+        CXX="arm-none-eabi-g++",
+        GDB="arm-none-eabi-gdb",
+        OBJCOPY="arm-none-eabi-objcopy",
+        RANLIB="arm-none-eabi-gcc-ranlib",
+        SIZETOOL="arm-none-eabi-size",
+    )
+    
+    env.Append(
+        CCFLAGS=[ # TODO: what do these do?
+            "-MD",
+            "-MT",
+        ],
+        LINKFLAGS=[
+            "-nostartfiles",
+            "-Wl,--no-undefined",
+            "-Wl,-n",
+        ],
+    )
 else:
-	raise Exception("Unsupported CPU")
+    raise Exception("Unsupported CPU")
 
 env.Append(
     BUILDERS=dict(
-		CreateAppRoot=Builder(
-			action=[
+        CreateAppRoot=Builder(
+            action=[
                 Mkdir("$TARGET"),
                 Copy("$TARGET/app_manifest.json", "$PROJECT_DIR/app_manifest.json"),
                 Mkdir("$TARGET/bin"),
                 Copy("$TARGET/bin/app", "$SOURCE")
-			],
-			target_factory=env.fs.Dir
-		),
+            ],
+            target_factory=env.fs.Dir
+        ),
         CreateImagePackage=Builder(
             action=[
                 " ".join([
@@ -150,8 +150,8 @@ env.Append(
                     "--output",
                     "$TARGET",
                     "--sysroot",
-                    "$AZSPHERE_SYSROOT"  # -h "C:/Users/krzys/Desktop/azure-sphere-samples/Hardware/mt3620_rdb/sample_hardware.json"
-				]),
+                    "$AZSPHERE_SYSROOT"
+                ]),
             ],
             suffix=".imagepackage"
         ),
@@ -165,7 +165,7 @@ env.Append(
                     "-v",
                     "--imagepackage",
                     "$SOURCE"
-				]),
+                ]),
             ]
         )
     )
